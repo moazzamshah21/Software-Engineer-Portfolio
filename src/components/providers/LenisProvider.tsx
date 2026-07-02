@@ -23,6 +23,7 @@ type LenisContextValue = {
     target: string | number | HTMLElement,
     options?: ScrollToOptions
   ) => void;
+  resize: () => void;
 };
 
 const LenisContext = createContext<LenisContextValue | null>(null);
@@ -75,7 +76,11 @@ export function LenisProvider({ children }: { children: ReactNode }) {
     []
   );
 
+  const resize = useCallback(() => {
+    lenisRef.current?.resize();
+  }, []);
+
   return (
-    <LenisContext.Provider value={{ scrollTo }}>{children}</LenisContext.Provider>
+    <LenisContext.Provider value={{ scrollTo, resize }}>{children}</LenisContext.Provider>
   );
 }

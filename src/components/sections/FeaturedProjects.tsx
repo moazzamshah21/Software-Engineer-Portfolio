@@ -26,21 +26,31 @@ export function FeaturedProjects() {
     registerGsapPlugins();
     if (!sectionRef.current) return;
 
-    gsap.fromTo(
-      ".featured-card",
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.7,
-        stagger: 0.12,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 70%",
-        },
-      }
-    );
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px)", () => {
+      const ctx = gsap.context(() => {
+        gsap.fromTo(
+          ".featured-card",
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.7,
+            stagger: 0.12,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 70%",
+            },
+          }
+        );
+      }, sectionRef);
+
+      return () => ctx.revert();
+    });
+
+    return () => mm.revert();
   }, []);
 
   return (
@@ -57,7 +67,7 @@ export function FeaturedProjects() {
             <Link
               key={project.id}
               href="/projects"
-              className="featured-card opacity-0 morph-card-expand group p-5 md:p-8"
+              className="featured-card opacity-0 max-md:opacity-100 morph-card-expand group p-5 md:p-8"
             >
               <div
                 className="morph-card-bg absolute inset-0 pointer-events-none z-[1]"

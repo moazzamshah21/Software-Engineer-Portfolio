@@ -34,21 +34,31 @@ export function Services() {
     registerGsapPlugins();
     if (!sectionRef.current) return;
 
-    gsap.fromTo(
-      ".service-card",
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.7,
-        stagger: 0.08,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 70%",
-        },
-      }
-    );
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px)", () => {
+      const ctx = gsap.context(() => {
+        gsap.fromTo(
+          ".service-card",
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.7,
+            stagger: 0.08,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 70%",
+            },
+          }
+        );
+      }, sectionRef);
+
+      return () => ctx.revert();
+    });
+
+    return () => mm.revert();
   }, []);
 
   return (
@@ -73,7 +83,7 @@ export function Services() {
           {servicesContent.items.slice(0, 4).map((service, i) => (
             <div
               key={service.title}
-              className="service-card opacity-0 morph-card-expand morph-card-expand--tall group p-6 md:p-8"
+              className="service-card opacity-0 max-md:opacity-100 morph-card-expand morph-card-expand--tall group p-6 md:p-8"
             >
               <div className="morph-card-content">
                 <div className="morph-card-content-inner">
@@ -111,7 +121,7 @@ export function Services() {
           {servicesContent.items.slice(4).map((service, i) => (
             <div
               key={service.title}
-              className="service-card opacity-0 surface-card p-5 group hover:border-white/20 transition-all duration-500"
+              className="service-card opacity-0 max-md:opacity-100 surface-card p-5 group hover:border-white/20 transition-all duration-500 max-md:transition-none"
             >
               <div className="flex items-center gap-3 mb-3 text-white/60 group-hover:text-white transition-colors">
                 {iconMap[service.icon] || <FiZap size={18} />}

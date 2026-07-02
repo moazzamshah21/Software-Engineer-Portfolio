@@ -250,7 +250,6 @@
     @apply morph-card relative block overflow-hidden;
     flex: 1 1 0;
     min-width: 0;
-    height: 220px;
     --morph-expand-duration: 0.75s;
     --morph-reveal-delay: 0.65s;
     --morph-reveal-duration: 1s;
@@ -472,6 +471,80 @@
     transform: translate(-50%, -50%) rotate(180deg);
     background: #000;
     transition: transform 0.22s cubic-bezier(0.2, 0.9, 0.2, 1) 0.1s;
+  }
+
+  @media (max-width: 767px) {
+    .morph-expand-track .morph-card-expand,
+    .morph-expand-track .morph-card-expand:hover {
+      flex: none;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+      transition: none;
+      @apply bg-surface-raised border-glass-border;
+    }
+
+    .morph-expand-track .morph-card-content,
+    .morph-expand-track .morph-card-content-inner {
+      height: auto;
+    }
+
+    .morph-expand-track .morph-card-content-top,
+    .morph-expand-track .morph-card-expand:hover .morph-card-content-top {
+      padding-right: 0;
+      overflow: visible;
+    }
+
+    .morph-expand-track .morph-card-heading,
+    .morph-expand-track .morph-card-expand:hover .morph-card-heading {
+      max-height: none;
+      white-space: normal;
+      overflow: visible;
+      text-overflow: clip;
+      font-size: 1.25rem;
+      transition: none;
+    }
+
+    .morph-expand-track .morph-card-content-reveal,
+    .morph-expand-track .morph-card-expand:hover .morph-card-content-reveal {
+      opacity: 1;
+      max-height: none;
+      margin-top: 1rem;
+      padding-right: 0;
+      visibility: visible;
+      overflow: visible;
+      transition: none;
+    }
+
+    .morph-expand-track .morph-card-reveal-text,
+    .morph-expand-track .morph-card-expand:hover .morph-card-reveal-text {
+      display: block;
+      overflow: visible;
+      -webkit-line-clamp: unset;
+      -webkit-box-orient: unset;
+    }
+
+    .morph-expand-track .morph-card-reveal-tags {
+      display: flex;
+    }
+
+    .morph-expand-track .morph-card-bg,
+    .morph-expand-track .morph-card-expand:hover .morph-card-bg {
+      opacity: 1;
+      transition: none;
+    }
+
+    .morph-expand-track .morph-card-spacer,
+    .morph-expand-track .morph-toggle-btn,
+    .morph-expand-track .morph-card-expand:hover .morph-toggle-btn {
+      display: none;
+    }
+
+    .morph-expand-track .featured-card,
+    .morph-expand-track .service-card {
+      opacity: 1;
+      transform: none;
+    }
   }
 
   .morph-flip-panel {

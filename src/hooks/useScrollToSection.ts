@@ -3,6 +3,7 @@
 import { useCallback } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useLenisContext } from "@/components/providers/LenisProvider";
+import { setPendingSectionScroll } from "@/lib/section-scroll";
 
 export function useScrollToSection() {
   const { scrollTo } = useLenisContext();
@@ -14,7 +15,8 @@ export function useScrollToSection() {
       if (!href.startsWith("#")) return;
 
       if (pathname !== "/") {
-        router.push(`/${href}`);
+        setPendingSectionScroll(href);
+        router.push("/");
         return;
       }
 
