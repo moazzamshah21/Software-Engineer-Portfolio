@@ -5,12 +5,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { gsap } from "@/lib/gsap";
 import { navigationContent } from "@/content/navigation";
+import { useScrollToSection } from "@/hooks/useScrollToSection";
 import { cn } from "@/lib/utils";
 import { FiMenu, FiX } from "react-icons/fi";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
 export function Navbar() {
   const pathname = usePathname();
+  const scrollToSection = useScrollToSection();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -30,10 +32,7 @@ export function Navbar() {
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
-    if (href.startsWith("#")) {
-      const el = document.querySelector(href);
-      el?.scrollIntoView({ behavior: "smooth" });
-    }
+    scrollToSection(href);
   };
 
   return (
@@ -82,7 +81,11 @@ export function Navbar() {
         </ul>
 
         <div className="hidden lg:block nav-item">
-          <MagneticButton href="#contact" variant="primary" size="sm">
+          <MagneticButton
+            variant="primary"
+            size="sm"
+            onClick={() => handleNavClick("#contact")}
+          >
             Contact
           </MagneticButton>
         </div>
@@ -122,7 +125,12 @@ export function Navbar() {
               </li>
             ))}
             <li className="pt-4">
-              <MagneticButton href="#contact" variant="primary" size="md" className="w-full justify-center">
+              <MagneticButton
+                variant="primary"
+                size="md"
+                className="w-full justify-center"
+                onClick={() => handleNavClick("#contact")}
+              >
                 Contact
               </MagneticButton>
             </li>

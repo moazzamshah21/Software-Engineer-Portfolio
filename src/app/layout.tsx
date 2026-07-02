@@ -7,6 +7,7 @@ import { UIStateProvider } from "@/components/providers/UIStateProvider";
 import { AppProviders } from "@/components/providers/AppProviders";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { HashScrollHandler } from "@/components/layout/HashScrollHandler";
 import "./globals.css";
 
 const displayFont = Bricolage_Grotesque({
@@ -37,6 +38,7 @@ export default function RootLayout({
         <LenisProvider>
           <UIStateProvider>
             <AppProviders>
+              <HashScrollHandler />
               <Navbar />
               <main className="relative">{children}</main>
               <Footer />

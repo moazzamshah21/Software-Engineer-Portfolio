@@ -75,8 +75,8 @@ export const projectsContent = {
       title: "Anchor Prayer",
       description:
         "Spiritual wellness application with prayer tracking, reminders, and community engagement features.",
-      category: "flutter",
-      techStack: ["Flutter", "Firebase", "Push Notifications"],
+      category: "react-native",
+      techStack: ["React Native", "Firebase", "Push Notifications"],
       gradient: "from-white/10 to-white/5",
       accentColor: "#E8E8EC",
     },
@@ -137,8 +137,8 @@ export const projectsContent = {
       title: "Yalla Go Express",
       description:
         "React Native implementation of the delivery platform with native performance and cross-platform consistency.",
-      category: "react-native",
-      techStack: ["React Native", "Firebase", "Real-time Tracking"],
+      category: "flutter",
+      techStack: ["Flutter", "Firebase", "Real-time Tracking"],
       gradient: "from-white/8 to-white/3",
       accentColor: "#A8A8B0",
     },

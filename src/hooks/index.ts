@@ -1,4 +1,5 @@
 export { useLenis } from "./useLenis";
+export { useScrollToSection } from "./useScrollToSection";
 export { useGsapScrollTrigger, useScrollReveal } from "./useGsapScrollTrigger";
 export { useMagneticButton, useMouseParallax } from "./useMagneticButton";
 export { use3DCardTilt } from "./use3DCardTilt";
